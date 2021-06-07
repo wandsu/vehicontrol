@@ -30,5 +30,11 @@ public class UsuarioService {
 		
 		return usuarioRepository.save(usuario);
 	}
+	
+	public Usuario buscar(Long clienteId) {
+		return usuarioRepository.findById(clienteId)
+				.orElseThrow(() -> new NegocioException("Usuario não encontrado"));
+	}
+	
 
 }
