@@ -11,7 +11,7 @@ import com.br.zup.vehicontrol.model.fipemodel.Marca;
 import com.br.zup.vehicontrol.model.fipemodel.Modelos;
 import com.br.zup.vehicontrol.model.fipemodel.ValorVeiculo;
 
-@FeignClient(url="https://parallelum.com.br/fipe/api/v1", name = "fipe")
+@FeignClient(name = "${feign.name}", url = "${feign.url}")
 public interface FIPEClient {
 	
 	@GetMapping("/{tipoVeiculo}/marcas")
