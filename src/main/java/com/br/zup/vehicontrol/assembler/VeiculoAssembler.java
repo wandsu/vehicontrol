@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import com.br.zup.vehicontrol.model.Veiculo;
 import com.br.zup.vehicontrol.model.VeiculoInput;
 import com.br.zup.vehicontrol.model.VeiculoOutput;
+import com.br.zup.vehicontrol.service.VeiculoService;
+import com.br.zup.vehicontrol.utils.Utils;
 
 @Component
 public class VeiculoAssembler {
@@ -14,11 +16,18 @@ public class VeiculoAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Autowired
+	private VeiculoService veiculoService;
+	
 	public Veiculo toEntity(VeiculoInput veiculoInput) {
 		return modelMapper.map(veiculoInput, Veiculo.class);
 	}
 	
 	public VeiculoOutput toModel(Veiculo veiculo) {
-		return modelMapper.map(veiculo, VeiculoOutput.class);	
+		VeiculoOutput veiculoOutput = modelMapper.map(veiculo, VeiculoOutput.class);
+		veiculoOutput.setRodizioAtivo(veiculo.rodizioAtivo(Utils.diaSemana()));
+		veiculoOutput.setPreço(veiculoService.obtemValorVeiculo(veiculo));
+		
+		return veiculoOutput;	
 	}
 }
