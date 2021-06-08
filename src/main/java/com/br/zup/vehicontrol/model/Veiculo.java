@@ -1,5 +1,6 @@
 package com.br.zup.vehicontrol.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,25 +23,31 @@ public class Veiculo {
 	@NotNull
 	private Usuario usuario;
 	
+	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo tipoVeiculo;
 	
 	@NotBlank
 	@Size(max = 70)
+	@Column(nullable=false)
 	private String marca;
 	
 	@NotBlank
 	@Size(max = 250)
+	@Column(nullable=false)
 	private String modelo;
 	
 	@NotNull
+	@Column(nullable=false)
 	private Integer ano;
 	
 	@NotNull
+	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Combustivel combustivel;
 
 	@Size(max = 250)
+	@Column(nullable=false)
 	private String diaRodizio;
 	
 	public Long getId() {

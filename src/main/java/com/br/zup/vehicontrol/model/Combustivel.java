@@ -2,7 +2,7 @@ package com.br.zup.vehicontrol.model;
 
 public enum Combustivel {
 	
-	GASOLINA(1), ALCOOL(2), DISEL(3);
+	GASOLINA(1), ALCOOL(2), DIESEL(3);
 
 	private final int codigoCombustivel;
 	

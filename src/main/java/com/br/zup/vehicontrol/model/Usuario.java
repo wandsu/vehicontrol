@@ -2,6 +2,7 @@ package com.br.zup.vehicontrol.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,19 +24,23 @@ public class Usuario {
 	
 	@NotBlank
 	@Size(max = 70)
+	@Column(nullable=false)
 	private String nome;
 	
 	@NotBlank
 	@Email
 	@Size(max = 250)
+	@Column(unique=true, nullable=false)
 	private String email;
 	
 	@NotBlank
 	@Length(min = 11, max = 11)
+	@Column(unique=true, nullable=false)
 	private String cpf;
 
 	@NotNull
 	@Past
+	@Column(nullable=false)
 	private LocalDate dataNascimento;
 
 	public Long getId() {
