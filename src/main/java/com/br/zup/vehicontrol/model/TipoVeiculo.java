@@ -1,7 +1,7 @@
 package com.br.zup.vehicontrol.model;
 
 public enum TipoVeiculo {
-	MOTO("motos"), CARRO("carros"), CAMINHAO("caminhaos");
+	MOTO("motos"), CARRO("carros"), CAMINHAO("caminhoes");
 
 	private final String tipo;
 	
