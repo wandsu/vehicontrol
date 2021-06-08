@@ -24,9 +24,11 @@ public class VeiculoController {
 	@Autowired
 	private VeiculoAssembler veiculoAssembler;
 	
+	
 	@PostMapping
 	public VeiculoOutput cadastrar(@Valid @RequestBody VeiculoInput veiculoInput) {
 		Veiculo veiculo = veiculoAssembler.toEntity(veiculoInput);
 		return veiculoAssembler.toModel(veiculoService.salvar(veiculo));
 	}
+	
 }

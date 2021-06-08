@@ -1,5 +1,6 @@
 package com.br.zup.vehicontrol.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.zup.vehicontrol.client.FIPEClient;
 import com.br.zup.vehicontrol.exception.NegocioException;
+import com.br.zup.vehicontrol.model.Usuario;
 import com.br.zup.vehicontrol.model.Veiculo;
 import com.br.zup.vehicontrol.model.fipemodel.Ano;
 import com.br.zup.vehicontrol.model.fipemodel.Marca;
@@ -31,7 +33,11 @@ public class VeiculoService {
 		veiculo.setUsuario(usuarioService.buscar(veiculo.getUsuario().getId()));
 		veiculo.calculaDiaRodizio();
 		return veiculoRepository.save(veiculo);
-	}	
+	}
+	
+	public List<Veiculo> listarVeiculosUsuario(Usuario usuario) {
+		return veiculoRepository.findByUsuario(usuario);
+	}
 	
 	public String obtemValorVeiculo(Veiculo veiculo) {
 		Marca marca = carregarMarca(veiculo);

@@ -5,10 +5,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.zup.vehicontrol.assembler.UsuarioAssembler;
 import com.br.zup.vehicontrol.exception.NegocioException;
 import com.br.zup.vehicontrol.model.Usuario;
-import com.br.zup.vehicontrol.model.dto.UsuarioOutput;
 import com.br.zup.vehicontrol.repository.UsuarioRepository;
 
 @Service
@@ -17,11 +15,9 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Autowired
-	private UsuarioAssembler usuarioAssembler;
 	
 	@Transactional
-	public UsuarioOutput salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 		boolean emailEmUso = usuarioRepository.findByEmail(usuario.getEmail()).isPresent();
 		boolean cpfEmUso = usuarioRepository.findByCpf(usuario.getCpf()).isPresent();
 		
@@ -33,9 +29,7 @@ public class UsuarioService {
 			throw new NegocioException("Já existe um usuário cadastrado com esse CPF");	
 		}
 		
-		usuarioRepository.save(usuario);
-		
-		return usuarioAssembler.toModel(usuario);
+		return usuarioRepository.save(usuario);
 	}
 	
 	public Usuario buscar(Long usuarioId) {

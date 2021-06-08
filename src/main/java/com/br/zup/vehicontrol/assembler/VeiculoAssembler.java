@@ -1,5 +1,8 @@
 package com.br.zup.vehicontrol.assembler;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,5 +32,11 @@ public class VeiculoAssembler {
 		veiculoOutput.setPreço(veiculoService.obtemValorVeiculo(veiculo));
 		
 		return veiculoOutput;	
+	}
+	
+	public List<VeiculoOutput> toCollection(List<Veiculo> veiculos){
+		return veiculos.stream()
+				.map(this::toModel)
+				.collect(Collectors.toList());
 	}
 }
