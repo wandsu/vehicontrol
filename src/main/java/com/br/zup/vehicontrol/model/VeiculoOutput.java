@@ -1,20 +1,23 @@
 package com.br.zup.vehicontrol.model;
 
+
 public class VeiculoOutput {
 	
-	private Long Id;
+	private Long id;
 	private TipoVeiculo tipoVeiculo;
 	private String marca;
 	private String modelo;
 	private Integer ano;
+	private Combustivel combustivel;
 	private String preço;
+	private String diaRodizio;
 	private boolean rodizioAtivo;
 	
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 	public TipoVeiculo getTipoVeiculo() {
 		return tipoVeiculo;
@@ -40,11 +43,23 @@ public class VeiculoOutput {
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
+	public Combustivel getCombustivel() {
+		return combustivel;
+	}
+	public void setCombustivel(Combustivel combustivel) {
+		this.combustivel = combustivel;
+	}
 	public String getPreço() {
 		return preço;
 	}
 	public void setPreço(String preço) {
 		this.preço = preço;
+	}
+	public String getDiaRodizio() {
+		return diaRodizio;
+	}
+	public void setDiaRodizio(String diaRodizio) {
+		this.diaRodizio = diaRodizio;
 	}
 	public boolean isRodizioAtivo() {
 		return rodizioAtivo;

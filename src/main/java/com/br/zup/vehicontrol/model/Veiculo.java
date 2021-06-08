@@ -35,8 +35,13 @@ public class Veiculo {
 	
 	@NotNull
 	private Integer ano;
-
 	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Combustivel combustivel;
+
+	@Size(max = 250)
+	private String diaRodizio;
 	
 	public Long getId() {
 		return id;
@@ -86,12 +91,51 @@ public class Veiculo {
 		this.ano = ano;
 	}
 
-	@Override
-	public String toString() {
-		return "Veiculo [id=" + id + ", tipoVeiculo=" + tipoVeiculo.getTipo() + ", marca=" + marca + ", modelo=" + modelo
-				+ ", ano=" + ano + "]";
+	public Combustivel getCombustivel() {
+		return combustivel;
+	}
+
+	public void setCombustivel(Combustivel combustivel) {
+		this.combustivel = combustivel;
+	}
+
+	public String getDiaRodizio() {
+		return diaRodizio;
+	}
+
+	public void setDiaRodizio(String diaRodizio) {
+		this.diaRodizio = diaRodizio;
 	}
 	
+	public void calculaDiaRodizio() {
+		int dia = this.ano % 10;
+		
+		switch(dia) {
+			case 0:
+			case 1:
+				this.diaRodizio = "segunda-feira";
+				break;
+			case 2:
+			case 3:
+				this.diaRodizio = "terça-feira";
+				break;
+			case 4:
+			case 5:
+				this.diaRodizio = "quarta-feira";
+				break;
+			case 6:
+			case 7:
+				this.diaRodizio = "quinta-feira";
+				break;
+			case 8:
+			case 9:
+				this.diaRodizio = "sexta-feira";
+				break;
+		}
+		
+	}
 	
-
+	public boolean rodizioAtivo(String diaSemana) {
+		return (this.diaRodizio == diaSemana) ? true : false;
+	}
 }

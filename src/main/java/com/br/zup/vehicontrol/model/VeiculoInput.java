@@ -1,15 +1,13 @@
 package com.br.zup.vehicontrol.model;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class VeiculoInput {
-	
-	@Enumerated(EnumType.STRING)
+
+	@NotNull
 	private TipoVeiculo tipoVeiculo;
 	
 	@NotBlank
@@ -22,6 +20,9 @@ public class VeiculoInput {
 	
 	@NotNull
 	private Integer ano;
+	
+	@NotNull
+	private Combustivel combustivel;
 	
 	@Valid
 	@NotNull
@@ -42,6 +43,14 @@ public class VeiculoInput {
 
 	public Integer getAno() {
 		return ano;
+	}
+
+	public Combustivel getCombustivel() {
+		return combustivel;
+	}
+
+	public void setCombustivel(Combustivel combustivel) {
+		this.combustivel = combustivel;
 	}
 
 	public UsuarioIdInput getUsuario() {
