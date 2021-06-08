@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.zup.vehicontrol.assembler.UsuarioAssembler;
 import com.br.zup.vehicontrol.model.Usuario;
+import com.br.zup.vehicontrol.model.dto.UsuarioInput;
+import com.br.zup.vehicontrol.model.dto.UsuarioOutput;
 import com.br.zup.vehicontrol.service.UsuarioService;
 
 @RestController
@@ -20,10 +23,14 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private UsuarioAssembler usuarioAssembler;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Usuario cadastrar(@Valid @RequestBody Usuario usuario) {
+	public UsuarioOutput cadastrar(@Valid @RequestBody UsuarioInput usuarioInput) {
+		Usuario usuario = usuarioAssembler.toEntity(usuarioInput);
 		return usuarioService.salvar(usuario);
 	}
 }

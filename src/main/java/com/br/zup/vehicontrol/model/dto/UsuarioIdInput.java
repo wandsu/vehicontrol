@@ -1,4 +1,4 @@
-package com.br.zup.vehicontrol.model;
+package com.br.zup.vehicontrol.model.dto;
 
 import javax.validation.constraints.NotNull;
 

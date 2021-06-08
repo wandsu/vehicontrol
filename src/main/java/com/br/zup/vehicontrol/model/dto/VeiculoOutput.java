@@ -1,5 +1,7 @@
-package com.br.zup.vehicontrol.model;
+package com.br.zup.vehicontrol.model.dto;
 
+import com.br.zup.vehicontrol.model.Combustivel;
+import com.br.zup.vehicontrol.model.TipoVeiculo;
 
 public class VeiculoOutput {
 	

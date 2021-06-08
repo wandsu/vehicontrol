@@ -1,9 +1,12 @@
-package com.br.zup.vehicontrol.model;
+package com.br.zup.vehicontrol.model.dto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.br.zup.vehicontrol.model.Combustivel;
+import com.br.zup.vehicontrol.model.TipoVeiculo;
 
 public class VeiculoInput {
 

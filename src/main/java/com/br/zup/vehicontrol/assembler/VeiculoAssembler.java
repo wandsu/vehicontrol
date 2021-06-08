@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.br.zup.vehicontrol.model.Veiculo;
-import com.br.zup.vehicontrol.model.VeiculoInput;
-import com.br.zup.vehicontrol.model.VeiculoOutput;
+import com.br.zup.vehicontrol.model.dto.VeiculoInput;
+import com.br.zup.vehicontrol.model.dto.VeiculoOutput;
 import com.br.zup.vehicontrol.service.VeiculoService;
 import com.br.zup.vehicontrol.utils.Utils;
 
