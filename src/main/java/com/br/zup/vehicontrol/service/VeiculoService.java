@@ -30,6 +30,7 @@ public class VeiculoService {
 	FIPEClient fipeClient;
 	
 	public Veiculo salvar(Veiculo veiculo) {
+		consultaVeiculoAPI(veiculo);
 		veiculo.setUsuario(usuarioService.buscar(veiculo.getUsuario().getId()));
 		veiculo.calculaDiaRodizio();
 		return veiculoRepository.save(veiculo);
@@ -37,6 +38,13 @@ public class VeiculoService {
 	
 	public List<Veiculo> listarVeiculosUsuario(Usuario usuario) {
 		return veiculoRepository.findByUsuario(usuario);
+	}
+	
+	public void consultaVeiculoAPI(Veiculo veiculo) {
+		Marca marca = carregarMarca(veiculo);
+		Modelo modelo = carregarModelo(veiculo, marca.getCodigo());
+		Ano ano = carregarAno(veiculo, marca.getCodigo(), modelo.getCodigo());
+		carregarValor(veiculo, marca.getCodigo(), modelo.getCodigo(), ano.getCodigo());
 	}
 	
 	public String obtemValorVeiculo(Veiculo veiculo) {

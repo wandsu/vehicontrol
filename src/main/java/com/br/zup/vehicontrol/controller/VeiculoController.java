@@ -3,9 +3,11 @@ package com.br.zup.vehicontrol.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.zup.vehicontrol.assembler.VeiculoAssembler;
@@ -26,6 +28,7 @@ public class VeiculoController {
 	
 	
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public VeiculoOutput cadastrar(@Valid @RequestBody VeiculoInput veiculoInput) {
 		Veiculo veiculo = veiculoAssembler.toEntity(veiculoInput);
 		return veiculoAssembler.toModel(veiculoService.salvar(veiculo));

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import com.br.zup.vehicontrol.model.dto.UsuarioInput;
 import com.br.zup.vehicontrol.model.dto.UsuarioOutput;
 import com.br.zup.vehicontrol.model.dto.VeiculoOutput;
 import com.br.zup.vehicontrol.model.dto.VeiculosUsuarioOutput;
+import com.br.zup.vehicontrol.repository.UsuarioRepository;
 import com.br.zup.vehicontrol.service.UsuarioService;
 import com.br.zup.vehicontrol.service.VeiculoService;
 
@@ -37,7 +39,11 @@ public class UsuarioController {
 	private UsuarioAssembler usuarioAssembler;
 	
 	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
 	private VeiculoService veiculoService;
+	
 	
 	@Autowired
 	private VeiculoAssembler veiculoAssembler;
@@ -47,26 +53,25 @@ public class UsuarioController {
 	public UsuarioOutput cadastrar(@Valid @RequestBody UsuarioInput usuarioInput) {
 		Usuario usuario = usuarioAssembler.toEntity(usuarioInput);
 		Usuario usuarioCadastrado = usuarioService.salvar(usuario);
+		
 		return usuarioAssembler.toModel(usuarioCadastrado);
 	}
 	
 	
 	@GetMapping("/{usuarioId}/veiculos")
-	public VeiculosUsuarioOutput listarVeiculo(@PathVariable Long usuarioId) {
+	public ResponseEntity<VeiculosUsuarioOutput> listarVeiculo(@PathVariable Long usuarioId) {
+		if(!usuarioRepository.existsById(usuarioId)) {
+			return ResponseEntity.notFound().build();
+		}
+		
 		Usuario usuario = usuarioService.buscar(usuarioId);
 		List<Veiculo> veiculos = veiculoService.listarVeiculosUsuario(usuario);
-		UsuarioOutput usuarioOutput = usuarioAssembler.toModel(usuario);
 		List<VeiculoOutput> veiculosOutput = veiculoAssembler.toCollection(veiculos);
-		return new VeiculosUsuarioOutput(usuarioOutput, veiculosOutput);		
+		UsuarioOutput usuarioOutput = usuarioAssembler.toModel(usuario);
+		
+		
+		return ResponseEntity.ok(new VeiculosUsuarioOutput(usuarioOutput, veiculosOutput));
+				
 	}
-	
-	/*
-	@GetMapping("/{entregaId}")
-	public ResponseEntity<EntregaModel> buscar(@PathVariable Long entregaId){
-		return entregaRepository.findById(entregaId)
-				.map(entrega -> ResponseEntity.ok(entregaAssembler.toModel(entrega)))
-				.orElse(ResponseEntity.notFound().build());
-	}*/
-
 
 }
