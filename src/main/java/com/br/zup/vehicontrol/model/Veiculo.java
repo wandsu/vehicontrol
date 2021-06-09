@@ -143,6 +143,6 @@ public class Veiculo {
 	}
 	
 	public boolean rodizioAtivo(String diaSemana) {
-		return (this.diaRodizio == diaSemana) ? true : false;
+		return this.diaRodizio.equals(diaSemana);
 	}
 }
