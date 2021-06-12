@@ -22,11 +22,11 @@ public class UsuarioService {
 		boolean cpfEmUso = usuarioRepository.findByCpf(usuario.getCpf()).isPresent();
 		
 		if(emailEmUso) {
-			throw new NegocioException("Já existe um usuário cadastrado com esse email");	
+			throw new NegocioException("Já existe um usuário cadastrado com esse email.");	
 		}
 		
 		if(cpfEmUso) {
-			throw new NegocioException("Já existe um usuário cadastrado com esse CPF");	
+			throw new NegocioException("Já existe um usuário cadastrado com esse CPF.");	
 		}
 		
 		return usuarioRepository.save(usuario);
@@ -34,8 +34,7 @@ public class UsuarioService {
 	
 	public Usuario buscar(Long usuarioId) {
 		return usuarioRepository.findById(usuarioId)
-				.orElseThrow(() -> new NegocioException("Usuario não encontrado"));
+				.orElseThrow(() -> new NegocioException("Usuario não encontrado."));
 	}
-	
 
 }
