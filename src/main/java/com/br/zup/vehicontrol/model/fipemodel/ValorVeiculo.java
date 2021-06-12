@@ -15,9 +15,4 @@ public class ValorVeiculo {
 		this.valor = valor;
 	}
 
-	@Override
-	public String toString() {
-		return "ValorVeiculo [valor=" + valor + "]";
-	}
-
 }

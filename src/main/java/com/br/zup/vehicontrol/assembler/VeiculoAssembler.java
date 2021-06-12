@@ -27,11 +27,14 @@ public class VeiculoAssembler {
 	}
 	
 	public VeiculoOutput toModel(Veiculo veiculo) {
-		VeiculoOutput veiculoOutput = modelMapper.map(veiculo, VeiculoOutput.class);
-		veiculoOutput.setRodizioAtivo(veiculo.rodizioAtivo(Utils.diaSemana()));
-		veiculoOutput.setPreco(consultaPrecoFacade.obtemValorVeiculo(veiculo));
+		VeiculoOutput veiculoOutput =
+				modelMapper.map(veiculo, VeiculoOutput.class);
+		veiculoOutput.setRodizioAtivo(
+				veiculo.rodizioAtivo(Utils.diaSemana()));
+		veiculoOutput.setPreco(
+				consultaPrecoFacade.obtemValorVeiculo(veiculo));
 		
-		return veiculoOutput;	
+		return veiculoOutput;
 	}
 	
 	public List<VeiculoOutput> toCollection(List<Veiculo> veiculos){

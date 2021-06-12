@@ -2,6 +2,7 @@ package com.br.zup.vehicontrol.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -59,18 +60,27 @@ public class UsuarioController {
 	
 	
 	@GetMapping("/{usuarioId}/veiculos")
-	public ResponseEntity<VeiculosUsuarioOutput> listarVeiculo(@PathVariable Long usuarioId) {
-		if(!usuarioRepository.existsById(usuarioId)) {
+	public ResponseEntity<VeiculosUsuarioOutput> listarVeiculo(
+			@PathVariable Long usuarioId) {
+
+		Optional<Usuario> usuarioSolicitado =
+				usuarioRepository.findById(usuarioId);
+		
+		if(usuarioSolicitado.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		Usuario usuario = usuarioService.buscar(usuarioId);
-		List<Veiculo> veiculos = veiculoService.listarVeiculosUsuario(usuario);
-		List<VeiculoOutput> veiculosOutput = veiculoAssembler.toCollection(veiculos);
-		UsuarioOutput usuarioOutput = usuarioAssembler.toModel(usuario);
+		Usuario usuario = usuarioSolicitado.get();
+		List<Veiculo> veiculos =
+				veiculoService.listarVeiculosUsuario(usuario);
+		List<VeiculoOutput> veiculosOutput =
+				veiculoAssembler.toCollection(veiculos);
+		UsuarioOutput usuarioOutput =
+				usuarioAssembler.toModel(usuario);
 		
 		
-		return ResponseEntity.ok(new VeiculosUsuarioOutput(usuarioOutput, veiculosOutput));
+		return ResponseEntity.ok(
+				new VeiculosUsuarioOutput(usuarioOutput, veiculosOutput));
 				
 	}
 

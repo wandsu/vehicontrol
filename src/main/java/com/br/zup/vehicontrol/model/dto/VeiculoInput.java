@@ -31,7 +31,7 @@ public class VeiculoInput {
 	@NotNull
 	private UsuarioIdInput usuario;
 
-	
+	//Getters and Setters
 	public TipoVeiculo getTipoVeiculo() {
 		return tipoVeiculo;
 	}

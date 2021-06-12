@@ -11,10 +11,10 @@ public class VeiculoOutput {
 	private String modelo;
 	private Integer ano;
 	private Combustivel combustivel;
-	private String preço;
+	private String preco;
 	private String diaRodizio;
 	private boolean rodizioAtivo;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -51,11 +51,11 @@ public class VeiculoOutput {
 	public void setCombustivel(Combustivel combustivel) {
 		this.combustivel = combustivel;
 	}
-	public String getPreço() {
-		return preço;
+	public String getPreco() {
+		return preco;
 	}
-	public void setPreço(String preço) {
-		this.preço = preço;
+	public void setPreco(String preco) {
+		this.preco = preco;
 	}
 	public String getDiaRodizio() {
 		return diaRodizio;
@@ -69,4 +69,5 @@ public class VeiculoOutput {
 	public void setRodizioAtivo(boolean rodizioAtivo) {
 		this.rodizioAtivo = rodizioAtivo;
 	}
+	
 }

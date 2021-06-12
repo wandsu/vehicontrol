@@ -145,4 +145,6 @@ public class Veiculo {
 	public boolean rodizioAtivo(String diaSemana) {
 		return this.diaRodizio.equals(diaSemana);
 	}
+
+	//Getters and Setters
 }

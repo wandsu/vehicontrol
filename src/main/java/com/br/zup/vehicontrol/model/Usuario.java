@@ -43,6 +43,8 @@ public class Usuario {
 	@Column(nullable=false)
 	private LocalDate dataNascimento;
 
+	//Getters and Setters
+
 	public Long getId() {
 		return id;
 	}

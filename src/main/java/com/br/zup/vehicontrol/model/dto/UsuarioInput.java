@@ -61,6 +61,4 @@ public class UsuarioInput {
 		this.dataNascimento = dataNascimento;
 	}
 	
-	
-
 }

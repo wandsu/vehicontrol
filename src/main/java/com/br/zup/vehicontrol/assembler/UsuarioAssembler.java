@@ -21,6 +21,4 @@ public class UsuarioAssembler {
 	public UsuarioOutput toModel(Usuario usuario) {
 		return modelMapper.map(usuario, UsuarioOutput.class);
 	}
-
-
 }
