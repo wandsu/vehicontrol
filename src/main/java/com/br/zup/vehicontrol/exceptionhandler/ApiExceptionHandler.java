@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.br.zup.vehicontrol.exception.NegocioException;
+
+import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
@@ -59,6 +62,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		problema.setTitulo(ex.getMessage());
 		
 		
+		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, webRequest);
+	}
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex, WebRequest webRequest){
+
+		HttpStatus status = HttpStatus.CONFLICT;
+
+		Problema problema = new Problema();
+		problema.setStatus(status.value());
+		problema.setDataHora(OffsetDateTime.now());
+		problema.setTitulo(ex.getCause().getCause().getLocalizedMessage());
+
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, webRequest);
 	}
 

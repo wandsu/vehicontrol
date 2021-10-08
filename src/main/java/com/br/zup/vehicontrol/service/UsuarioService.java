@@ -1,8 +1,10 @@
 package com.br.zup.vehicontrol.service;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.br.zup.vehicontrol.exception.NegocioException;
@@ -18,18 +20,12 @@ public class UsuarioService {
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
-		boolean emailEmUso = usuarioRepository.findByEmail(usuario.getEmail()).isPresent();
-		boolean cpfEmUso = usuarioRepository.findByCpf(usuario.getCpf()).isPresent();
-		
-		if(emailEmUso) {
-			throw new NegocioException("Já existe um usuário cadastrado com esse email.");	
+		try{
+			return usuarioRepository.save(usuario);
 		}
-		
-		if(cpfEmUso) {
-			throw new NegocioException("Já existe um usuário cadastrado com esse CPF.");	
+		catch (DataIntegrityViolationException error){
+			throw error;
 		}
-		
-		return usuarioRepository.save(usuario);
 	}
 	
 	public Usuario buscar(Long usuarioId) {
