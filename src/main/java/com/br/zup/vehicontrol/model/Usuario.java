@@ -14,6 +14,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity(name="usuarios")
 public class Usuario {
@@ -34,7 +35,8 @@ public class Usuario {
 	private String email;
 	
 	@NotBlank
-	@Length(min = 11, max = 11)
+	@Size(min = 11, max = 11)
+	@CPF
 	@Column(unique=true, nullable=false)
 	private String cpf;
 
