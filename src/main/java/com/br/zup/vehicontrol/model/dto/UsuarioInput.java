@@ -8,9 +8,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
-
 public class UsuarioInput {
 	
 	@NotBlank
@@ -24,7 +21,6 @@ public class UsuarioInput {
 	
 	@NotBlank
 	@Size(min = 11, max = 11)
-	@CPF
 	private String cpf;
 
 	@NotNull

@@ -59,12 +59,12 @@ public class UsuarioController {
 	}
 	
 	
-	@GetMapping("/{usuarioId}/veiculos")
+	@GetMapping("/veiculos/{cpf}")
 	public ResponseEntity<VeiculosUsuarioOutput> listarVeiculo(
-			@PathVariable Long usuarioId) {
+			@PathVariable String cpf) {
 
 		Optional<Usuario> usuarioSolicitado =
-				usuarioRepository.findById(usuarioId);
+				usuarioRepository.findByCpf(cpf);
 		
 		if(usuarioSolicitado.isEmpty()) {
 			return ResponseEntity.notFound().build();
