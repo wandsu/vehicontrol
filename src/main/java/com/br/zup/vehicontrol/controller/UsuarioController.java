@@ -59,7 +59,7 @@ public class UsuarioController {
 	}
 	
 	
-	@GetMapping("/veiculos/{cpf}")
+	@GetMapping("/{cpf}/veiculos")
 	public ResponseEntity<VeiculosUsuarioOutput> listarVeiculo(
 			@PathVariable String cpf) {
 
