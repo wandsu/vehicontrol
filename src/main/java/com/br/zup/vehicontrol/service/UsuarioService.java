@@ -1,8 +1,5 @@
 package com.br.zup.vehicontrol.service;
 
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -16,9 +13,7 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	
-	@Transactional
+
 	public Usuario salvar(Usuario usuario) {
 		try{
 			return usuarioRepository.save(usuario);

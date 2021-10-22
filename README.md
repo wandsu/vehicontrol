@@ -2,6 +2,8 @@
 
 Vehicontrol é uma api para controle de veículos que consome a api da tabela FIPE (https://deividfortuna.github.io/fipe) para fornecer informações de preço e rodízio aos usuários.
 
+Este projeto foi desenvolvido como um desafio técnico na minha participação do processo seletivo no programa Orange Talents da Zup Innovation. O objetivo era escrever um post blog explicando de maneira detalhada ("para alguém que não manja tanto de programação") como seria a implementação do projeto. O texto pode ser lido [aqui](https://medium.com/@wandersonbezerralima/construindo-uma-api-rest-para-controle-de-ve%C3%ADculos-com-spring-e16abb967fdf).
+
 ## Tecnologias
 
 - Java 11
@@ -19,7 +21,7 @@ Vehicontrol é uma api para controle de veículos que consome a api da tabela FI
 
 ### Cadastrando um usuário:
 ````
-POST/ usuarios
+POST /api/usuarios
 ````
 - **Exemplo Payload Request**
 ~~~json
@@ -41,13 +43,12 @@ POST/ usuarios
     "dataNascimento": "1960-03-21"
 }
 ~~~
-  
-### Cadastrando um veículo de um usuário:
 ___
-``` 
-POST /veiculos
-```
+### Cadastrando um veículo de um usuário:
 
+``` 
+POST /api/veiculos
+```
 - **Exemplo Payload Request**
 ~~~json
 {
@@ -63,7 +64,7 @@ POST /veiculos
 ~~~
 
 - **Exemplo Payload Response**
-___
+
 ~~~json
 {
     "id": 1,
@@ -77,10 +78,10 @@ ___
     "rodizioAtivo": false
 }
 ~~~
-
+___
 ### Listando veículos de um usuário
 ```
-GET /usuarios/{CPF}/veiculos
+GET /api/usuarios/{CPF}/veiculos
 ```
 
 ~~~json
